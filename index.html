@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OKIMOTOR - Bengkel Motor Profesional</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:sans-serif;}
+    body {background:#111; color:#fff; line-height:1.6;}
+
+    /* === NAVIGASI === */
+    nav {display:flex; justify-content:space-between; align-items:center; padding:15px 50px; background:#000; position:sticky; top:0; z-index:99;}
+    .logo {font-size:28px; font-weight:bold; color:#fff; text-decoration:none;}
+    .logo span {color:#e63946;}
+    .menu a {color:#fff; margin:0 15px; text-decoration:none; font-weight:500;}
+    .menu a:hover {color:#e63946;}
+    .wa-nav {background:#e63946; padding:8px 15px; border-radius:4px; color:#fff !important;}
+
+    /* === BAGIAN UTAMA === */
+    .hero {position:relative; height:550px; overflow:hidden;}
+    .hero img {width:100%; height:100%; object-fit:cover; filter:brightness(45%);}
+    .hero-teks {position:absolute; top:50%; left:60px; transform:translateY(-50%); max-width:550px;}
+    .hero-teks h1 {font-size:52px; line-height:1.2; margin-bottom:15px;}
+    .hero-teks h1 span {color:#e63946;}
+    .hero-teks p {font-size:18px; color:#ddd; margin-bottom:25px;}
+    .tombol {display:inline-block; padding:12px 28px; margin-right:12px; text-decoration:none; border-radius:4px; font-weight:bold; border:none; cursor:pointer; font-size:16px;}
+    .tombol-merah {background:#e63946; color:#fff;}
+    .tombol-transparan {border:2px solid #fff; color:#fff; background:transparent;}
+    .tombol:hover {opacity:0.9;}
+
+    /* === INFO KANAN === */
+    .info-kanan {position:absolute; top:100px; right:60px; background:rgba(0,0,0,0.7); padding:20px; border-left:4px solid #e63946; width:260px; border-radius:4px;}
+    .info-kanan h3 {color:#e63946; margin-bottom:12px;}
+    .info-kanan p {margin:6px 0; font-size:15px;}
+
+    /* === JUDUL BAGIAN === */
+    .bungkus {padding:0 50px;}
+    .judul-bagian {font-size:28px; margin:50px 0 30px; border-left:4px solid #e63946; padding-left:12px;}
+    .judul-bagian span {color:#aaa; font-size:16px; display:block; margin-top:5px;}
+
+    /* === LAYANAN === */
+    .grid-layanan {display:grid; grid-template-columns:repeat(6, 1fr); gap:12px;}
+    .kartu-layanan {position:relative; height:180px; overflow:hidden; border-radius:6px;}
+    .kartu-layanan img {width:100%; height:100%; object-fit:cover; filter:brightness(35%);}
+    .kartu-teks {position:absolute; bottom:0; left:0; padding:15px; width:100%;}
+    .kartu-teks h3 {font-size:15px; margin-bottom:5px;}
+    .nomor {color:#e63946; font-weight:bold; font-size:16px;}
+
+    /* === PERALATAN === */
+    .grid-peralatan {display:grid; grid-template-columns:repeat(4, 1fr); gap:15px;}
+    .kartu-peralatan {position:relative; height:200px; overflow:hidden; border-radius:6px;}
+    .kartu-peralatan img {width:100%; height:100%; object-fit:cover; filter:brightness(40%);}
+    .teks-peralatan {position:absolute; bottom:0; padding:15px; width:100%; background:linear-gradient(transparent, rgba(0,0,0,0.8));}
+    .teks-peralatan h3 {font-size:16px; margin-bottom:5px;}
+    .teks-peralatan p {font-size:13px; color:#ccc;}
+
+    /* === GALERI FOTO === */
+    .grid-galeri {display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;}
+    .grid-galeri img {width:100%; height:180px; object-fit:cover; border-radius:6px; transition:0.3s;}
+    .grid-galeri img:hover {transform:scale(1.05);}
+
+    /* === JAM BUKA & STATISTIK === */
+    .dua-kolom {display:grid; grid-template-columns:1fr 1fr; gap:30px; margin:30px 0;}
+    .kotak {background:#1a1a1a; padding:25px; border-radius:8px;}
+    .kotak h3 {color:#e63946; margin-bottom:15px; font-size:20px;}
+    .jam-buka p {padding:8px 0; border-bottom:1px solid #333; display:flex; justify-content:space-between;}
+    .jam-buka p span {color:#aaa;}
+    .grid-stat {display:grid; grid-template-columns:repeat(4, 1fr); gap:15px; text-align:center;}
+    .kartu-stat h2 {font-size:32px; color:#e63946;}
+    .kartu-stat p {color:#ccc; margin-top:5px; font-size:14px;}
+
+    /* === FORMULIR PESAN === */
+    label {display:block; margin:12px 0 5px; font-weight:500;}
+    input, textarea {width:100%; padding:12px; background:#222; border:1px solid #444; color:#fff; border-radius:4px; font-size:15px;}
+    textarea {height:120px; resize:none;}
+    button {margin-top:15px; width:100%;}
+
+    /* === LOKASI === */
+    .grid-lokasi {display:grid; grid-template-columns:1fr 350px; gap:30px; margin-bottom:50px;}
+    .peta-tempat img {width:100%; border-radius:8px; height:300px; object-fit:cover;}
+
+    /* === FOOTER === */
+    footer {background:#000; text-align:center; padding:25px; color:#888; margin-top:30px;}
+
+    /* === RESPONSIVE HP === */
+    @media(max-width:900px) {
+      .grid-layanan {grid-template-columns:repeat(3, 1fr);}
+      .grid-peralatan, .grid-galeri {grid-template-columns:repeat(2, 1fr);}
+      .grid-stat {grid-template-columns:repeat(2, 1fr);}
+      .dua-kolom, .grid-lokasi {grid-template-columns:1fr;}
+      .info-kanan {position:relative; top:0; right:0; margin:20px 0;}
+      .hero-teks {left:20px; max-width:90%;}
+      nav, .bungkus {padding:15px 20px;}
+    }
+    @media(max-width:500px) {
+      .grid-layanan {grid-template-columns:repeat(2, 1fr);}
+      .hero-teks h1 {font-size:32px;}
+      .menu a {margin:0 6px; font-size:13px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGASI -->
+<nav>
+  <a href="#" class="logo">OKI<span>MOTOR</span></a>
+  <div class="menu">
+    <a href="#beranda">BERANDA</a>
+    <a href="#layanan">LAYANAN</a>
+    <a href="#galeri">GALERI</a>
+    <a href="#tentang">TENTANG</a>
+    <a href="#kontak">KONTAK</a>
+    <a href="tel:082121338253" class="wa-nav">📞 0821-2133-8253</a>
+  </div>
+</nav>
+
+<!-- BAGIAN UTAMA -->
+<section class="hero" id="beranda">
+  <img src="images/bg-utama.jpg" alt="Bengkel Oki Motor">
+  <div class="hero-teks">
+    <h1>SERVIS MOTOR<br><span>PROFESIONAL</span></h1>
+    <p>Pengerjaan rapi, harga transparan, hasil memuaskan.<br>Motor prima, perjalanan nyaman.</p>
+    <a href="#kontak" class="tombol tombol-merah">BOOKING SERVIS</a>
+    <a href="#layanan" class="tombol tombol-transparan">LIHAT LAYANAN</a>
+  </div>
+  <div class="info-kanan">
+    <h3>BENGKEL MOTOR LENGKAP</h3>
+    <p>✅ Servis Semua Motor</p>
+    <p>✅ Bubut & Korter</p>
+    <p>✅ Sparepart Lengkap</p>
+    <p>✅ Oli Berkualitas</p>
+    <p>✅ Ban Motor</p>
+  </div>
+</section>
+
+<div class="bungkus">
+<!-- LAYANAN -->
+<section id="layanan">
+  <h2 class="judul-bagian">Semua Kebutuhan Motor Anda<span>Pilih layanan yang Anda butuhkan</span></h2>
+  <div class="grid-layanan">
+    <div class="kartu-layanan"><img src="images/servis.jpg" alt="Servis"><div class="kartu-teks"><span class="nomor">01</span><h3>SERVIS MOTOR</h3></div></div>
+    <div class="kartu-layanan"><img src="images/ganti-oli.jpg" alt="Ganti Oli"><div class="kartu-teks"><span class="nomor">02</span><h3>GANTI OLI</h3></div></div>
+    <div class="kartu-layanan"><img src="images/tuneup.jpg" alt="Tune Up"><div class="kartu-teks"><span class="nomor">03</span><h3>TUNE UP</h3></div></div>
+    <div class="kartu-layanan"><img src="images/bubut.jpg" alt="Bubut"><div class="kartu-teks"><span class="nomor">04</span><h3>BUBUT</h3></div></div>
+    <div class="kartu-layanan"><img src="images/korter.jpg" alt="Korter"><div class="kartu-teks"><span class="nomor">05</span><h3>KORTER</h3></div></div>
+    <div class="kartu-layanan"><img src="images/sparepart.jpg" alt="Sparepart"><div class="kartu-teks"><span class="nomor">06</span><h3>SPAREPART</h3></div></div>
+  </div>
+</section>
+
+<!-- PERALATAN -->
+<section>
+  <h2 class="judul-bagian">Peralatan Bengkel<span>Mesin & Peralatan Lengkap</span></h2>
+  <div class="grid-peralatan">
+    <div class="kartu-peralatan"><img src="images/mesin-bubut.jpg" alt="Mesin Bubut"><div class="teks-peralatan"><h3>MESIN BUBUT</h3><p>Presisi tinggi</p></div></div>
+    <div class="kartu-peralatan"><img src="images/korter-blok.jpg" alt="Korter Blok"><div class="teks-peralatan"><h3>KORTER BLOK</h3><p>Standar & oversize</p></div></div>
+    <div class="kartu-peralatan"><img src="images/sparepart-rak.jpg" alt="Sparepart"><div class="teks-peralatan"><h3>SPAREPART</h3><p>Komponen terpercaya</p></div></div>
+    <div class="kartu-peralatan"><img src="images/komponen.jpg" alt="Komponen"><div class="teks-peralatan"><h3>KOMPONEN</h3><p>Shock, as, dll</p></div></div>
+  </div>
+  <br><a href="#" class="tombol tombol-merah">LIHAT SELENGKAPNYA →</a>
+</section>
+
+<!-- GALERI FOTO -->
+<section id="galeri">
+  <h2 class="judul-bagian">Galeri Bengkel<span>Dokumentasi Pengerjaan & Fasilitas</span></h2>
+  <div class="grid-galeri">
+    <img src="images/galeri-1.jpg" alt="Foto Bengkel 1">
+    <img src="images/galeri-2.jpg" alt="Foto Bengkel 2">
+    <img src="images/galeri-3.jpg" alt="Foto Bengkel 3">
+    <img src="images/galeri-4.jpg" alt="Foto Bengkel 4">
+    <img src="images/galeri-5.jpg" alt="Foto Bengkel 5">
+    <img src="images/galeri-6.jpg" alt="Foto Bengkel 6">
+    <img src="images/galeri-7.jpg" alt="Foto Bengkel 7">
+    <img src="images/galeri-8.jpg" alt="Foto Bengkel 8">
+  </div>
+</section>
+
+<!-- JAM BUKA & STATISTIK -->
+<section class="dua-kolom">
+  <div class="kotak jam-buka">
+    <h3>🕐 JAM OPERASIONAL</h3>
+    <p>Senin <span>08:00 – 17:00</span></p>
+    <p>Selasa <span>08:00 – 17:00</span></p>
+    <p>Rabu <span>08:00 – 17:00</span></p>
+    <p>Kamis <span>08:00 – 17:00</span></p>
+    <p>Jumat <span>08:00 – 17:00</span></p>
+    <p>Sabtu <span>08:00 – 15:00</span></p>
+    <p>Minggu <span>Tutup</span></p>
+  </div>
+  <div class="kotak">
+    <h3>📊 DATA BENGKEL</h3>
+    <div class="grid-stat">
+      <div class="kartu-stat"><h2>2000+</h2><p>Pelanggan Puas</p></div>
+      <div class="kartu-stat"><h2>10+</h2><p>Tahun Pengalaman</p></div>
+      <div class="kartu-stat"><h2>5000+</h2><p>Servis Selesai</p></div>
+      <div class="kartu-stat"><h2>100%</h2><p>Garansi Servis</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+  <h2 class="judul-bagian">Tentang OKIMOTOR<span>Berpengalaman, Terpercaya, Profesional</span></h2>
+  <div class="kotak">
+    <p>OKIMOTOR adalah bengkel motor profesional yang berdedikasi memberikan pelayanan terbaik dengan harga transparan. Didukung tenaga teknisi berpengalaman dan peralatan lengkap — melayani servis berkala, ganti oli, tune up, bubut korter blok, hingga penyediaan sparepart berkualitas.</p>
+    <br>
+    <p>✅ Teknisi Berpengalaman<br>✅ Harga Terjangkau & Transparan<br>✅ Garansi Pengerjaan<br>✅ Suku Cadang Berkualitas</p>
+  </div>
+</section>
+
+<!-- KONTAK & FORMULIR -->
+<section id="kontak">
+  <h2 class="judul-bagian">Hubungi Kami<span>Booking servis atau tanya harga</span></h2>
+  <div class="grid-lokasi">
+    <div class="kotak">
+      <h3>✉️ KIRIM PESAN</h3>
+      <form>
+        <label>Nama Anda</label>
+        <input type="text" placeholder="Masukkan nama lengkap">
+        <label>No. HP / WhatsApp</label>
+        <input type="tel" placeholder="Contoh: 08xx-xxxx-xxxx">
+        <label>Keluhan / Jenis Servis</label>
+        <textarea placeholder="Ceritakan keluhan motor atau jenis servis yang diinginkan..."></textarea>
+        <button type="submit" class="tombol tombol-merah">KIRIM PESAN VIA WHATSAPP →</button>
+      </form>
+      <br>
+      <p>📞 Atau hubungi langsung: <strong>0821-2133-8253</strong></p>
+    </div>
+    <div>
+      <div class="kotak">
+        <h3>📍 LOKASI BENGKEL</h3>
+        <p>Pasar Rakyat Tobong<br>(Sebelah Pangkalan Ojeg Candivulan)</p>
+        <p>Kutaisari, Purbalingga, Jawa Tengah</p>
+      </div>
+      <div class="peta-tempat">
+        <img src="images/foto-toko.jpg" alt="Foto Depan Bengkel OKIMOTOR">
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 OKIMOTOR — Bengkel Motor Profesional, Purbalingga</p>
+</footer>
+
+</body>
+</html>
